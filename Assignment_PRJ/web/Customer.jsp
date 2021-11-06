@@ -16,11 +16,26 @@
         <link rel="stylesheet" href="Action/assets/fonts/font-awesome.min.css">
         <link rel="stylesheet" href="Action/assets/css/Table-With-Search-1.css">
         <link rel="stylesheet" href="Action/assets/css/Table-With-Search.css">
+        
+        <script> 
+            function doUpdate(id)
+            {
+                window.location.href = "/updateCustomer?id=" + id;
+            }
+            function doDelete(id)
+            {
+                var confirm = confirm("are you sure?");
+                if(confirm)
+                {
+                    window.location.href = "/deleteCustomer?id=" + id;
+                }
+            }
+        </script>
     </head>
         <body>
         <div class="col-md-12 search-table-col">
             <div class="form-group pull-right col-lg-2.5">
-                <a class ="nav-link" href="">Thêm khách hàng</a>
+                <a class ="nav-link" href="insertCustomer">Thêm khách hàng</a>
             </div>
             
             <div class="form-group pull-left col-lg-4"><input type="text" class="search form-control" placeholder="Search .."></div>
@@ -35,6 +50,8 @@
                             <th id="trs-hd" class="col-lg-2"style="width: 100px">Tổng cần thanh toán</th>
                             <th id="trs-hd" class="col-lg-2"style="width: 100px">Đã thanh toán</th>
                             <th id="trs-hd" class="col-lg-2"style="width: 100px">Còn nợ lại</th>
+                            <th id="trs-hd" class="col-lg-2"style="width: 50px"></th>
+                            <th id="trs-hd" class="col-lg-2"style="width: 50px"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,6 +63,8 @@
                             <td style="width: 100px">${c.total}</td>
                             <td style="width: 100px">${c.payed}</td>
                             <td style="width: 100px">${c.owes}</td>
+                            <td><input type="button" onclick="doUpdate(${c.id});" value="Update"/></td>
+                            <td><input type="button" onclick="doDelete(${c.id});" value="Delete"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>
