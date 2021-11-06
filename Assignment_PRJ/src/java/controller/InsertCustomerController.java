@@ -6,6 +6,7 @@
 package controller;
 
 import context.CustomerDBContext;
+import controller.auth.BaseRequiredAuthController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 84984
  */
-public class InsertCustomerController extends HttpServlet {
+public class InsertCustomerController extends BaseRequiredAuthController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +40,7 @@ public class InsertCustomerController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        request.getRequestDispatcher("newCustomer.jsp").forward(request, response);
     }
@@ -53,7 +54,7 @@ public class InsertCustomerController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
         CustomerDBContext cusDB = new  CustomerDBContext();

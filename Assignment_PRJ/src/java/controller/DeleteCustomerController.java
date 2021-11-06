@@ -6,6 +6,7 @@
 package controller;
 
 import context.CustomerDBContext;
+import controller.auth.BaseRequiredAuthController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 84984
  */
-public class DeleteCustomerController extends HttpServlet {
+public class DeleteCustomerController extends BaseRequiredAuthController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,16 +32,6 @@ public class DeleteCustomerController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
-        CustomerDBContext cusDB = new  CustomerDBContext();
-        cusDB.delete(id);
-        response.sendRedirect("customer"); // 
-        
-        
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -52,9 +43,12 @@ public class DeleteCustomerController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("id");
+        CustomerDBContext cusDB = new  CustomerDBContext();
+        cusDB.delete(id);
+        response.sendRedirect("customer");
     }
 
     /**
@@ -66,9 +60,8 @@ public class DeleteCustomerController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
@@ -82,26 +75,5 @@ public class DeleteCustomerController extends HttpServlet {
     }// </editor-fold>
     
     
-    static SimpleDateFormat df =  new SimpleDateFormat("yyyy-MM-dd");
     
-    public static void main(String[] args) {
-        System.out.println("XXXXXXXXXXXXXX");
-        
-        for(int i = 0 ; i < 50; i ++){
-            new Thread(){
-                @Override
-                public void run() {
-                    for (int j = 0; j < 5000000; j++) {
-                        try {
-                            String s = df.format(new Date()); // ko chắc đúng
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            System.out.println(e.getMessage());
-                        }
-                    }
-                }
-            }.start();
-        }
-         System.out.println("ttt");
-    }
 }
