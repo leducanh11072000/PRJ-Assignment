@@ -17,15 +17,14 @@ public class Goods {
     public Goods() {
     }
 
-    public Goods(Category category, int seri, Bill bills, String dvt, int number, int price) {
-        this.category = category;        
+    public Goods(Category category, int seri, Bill bills, String ColorCode, int number, int price) {
+        this.category = category;
         this.seri = seri;
         this.bills = bills;
-        this.ColorCode = dvt;
+        this.ColorCode = ColorCode;
         this.number = number;
         this.price = price;
     }
-    
 
     public Category getCategory() {
         return category;
@@ -75,9 +74,5 @@ public class Goods {
         this.price = price;
     }
 
-    public int getTotal() {
-        return price*number;
-    }
-
-  
+    
 }

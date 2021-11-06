@@ -20,6 +20,10 @@
         <servlet-name>InsertCustomerController</servlet-name>
         <servlet-class>controller.InsertCustomerController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SupplierListController</servlet-name>
+        <servlet-class>controller.SupplierListController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>customerController</servlet-name>
         <url-pattern>/customer</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>InsertCustomerController</servlet-name>
         <url-pattern>/insertCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupplierListController</servlet-name>
+        <url-pattern>/SupplierList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

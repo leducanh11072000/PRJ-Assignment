@@ -4,17 +4,17 @@
  * and open the template in the editor.
  */
 package model;
-public class Provider {
+public class Supplier {
     private int id;
     private String name;
     private String address;
     private String number;
     private String email;
 
-    public Provider() {
+    public Supplier() {
     }
 
-    public Provider(int id, String name, String address, String number, String email) {
+    public Supplier(int id, String name, String address, String number, String email) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -64,8 +64,10 @@ public class Provider {
 
     @Override
     public String toString() {
-        return "Provider{" + "id=" + id + ", name=" + name + ", address=" + address + ", number=" + number + ", email=" + email + '}';
+        return "Supplier{" + "id=" + id + ", name=" + name + ", address=" + address + ", number=" + number + ", email=" + email + '}';
     }
+
+    
 
     
    

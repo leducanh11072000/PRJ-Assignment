@@ -1,15 +1,15 @@
 
 package model;
-public class Ware {
+public class WareHouse {
     private  int id;
     private String cate;
     private String name;
     private int number;
 
-    public Ware() {
+    public WareHouse() {
     }
 
-    public Ware(int id, String cate, String name, int number) {
+    public WareHouse(int id, String cate, String name, int number) {
         this.id = id;
         this.cate = cate;
         this.name = name;

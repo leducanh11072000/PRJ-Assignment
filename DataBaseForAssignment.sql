@@ -124,7 +124,7 @@ GO
 CREATE TABLE [dbo].[importBill](
 	[id] [int] NOT NULL,
 	[date] [date] NULL,
-	[ProviderID] [int] NULL,
+	[SupplierID] [int] NULL,
 	[AmountPaid] [float] NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -142,7 +142,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[kho](
+CREATE TABLE [dbo].[WareHouse](
 	[seri] [varchar](50) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -158,7 +158,7 @@ CREATE TABLE [dbo].[importGoods](
 	[colorCode] [nvarchar](30),
 	[Number] [int] NULL,
 	[Price] [int] NULL,
-	CONSTRAINT fkkho_good FOREIGN KEY (Seri) REFERENCES kho (seri),
+	CONSTRAINT fkWareHouse_good FOREIGN KEY (Seri) REFERENCES WareHouse (seri),
 PRIMARY KEY CLUSTERED 
 (	[Seri],
 	[colorCode] ASC
@@ -169,7 +169,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Provider](
+CREATE TABLE [dbo].[Supplier](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](200) NULL,
 	[Address] [nvarchar](500) NULL,
@@ -203,19 +203,19 @@ INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [Total], [Payed], [Owes]) 
 INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [Total], [Payed], [Owes]) VALUES (N'LeAnhnk4', N'Nguyễn Khắc Lê Anh', N'02253977462', 8000000, 4300000,3700000)
 GO
 GO
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (111, CAST(N'2021-01-15' AS Date), 1, 12000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (1001, CAST(N'2021-03-04' AS Date), 2, 200000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (1122, CAST(N'2021-03-06' AS Date), 1, 300000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (1919, CAST(N'2021-02-01' AS Date), 3, 400000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (2000, CAST(N'2021-01-15' AS Date), 2, 12000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (7041, CAST(N'2021-01-22' AS Date), 3, 0)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (10021, CAST(N'2021-03-02' AS Date), 2, 200000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (35077, CAST(N'2021-03-16' AS Date), 4, 1500000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (121111, CAST(N'2021-03-18' AS Date), 2, 120000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (1110000, CAST(N'2021-01-15' AS Date), 1, 12000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (1333333, CAST(N'2021-02-05' AS Date), 1, 300000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (3050210, CAST(N'2021-02-05' AS Date), 2, 300000)
-INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (25122020, CAST(N'2020-12-25' AS Date), 1, 0)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (111, CAST(N'2021-01-15' AS Date), 1, 12000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (1001, CAST(N'2021-03-04' AS Date), 2, 200000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (1122, CAST(N'2021-03-06' AS Date), 1, 300000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (1919, CAST(N'2021-02-01' AS Date), 3, 400000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (2000, CAST(N'2021-01-15' AS Date), 2, 12000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (7041, CAST(N'2021-01-22' AS Date), 3, 0)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (10021, CAST(N'2021-03-02' AS Date), 2, 200000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (35077, CAST(N'2021-03-16' AS Date), 4, 1500000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (121111, CAST(N'2021-03-18' AS Date), 2, 120000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (1110000, CAST(N'2021-01-15' AS Date), 1, 12000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (1333333, CAST(N'2021-02-05' AS Date), 1, 300000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (3050210, CAST(N'2021-02-05' AS Date), 2, 300000)
+INSERT [dbo].[importBill] ([id], [date], [SupplierID], [AmountPaid]) VALUES (25122020, CAST(N'2020-12-25' AS Date), 1, 0)
 GO
 INSERT [dbo].[importGoods] ([categoryID],  [Seri], [importbillID], [colorCode], [Number], [Price]) VALUES (3, N'12009', 1001, N'Lô', 1, 200000)
 INSERT [dbo].[importGoods] ([categoryID],  [Seri], [importbillID], [colorCode], [Number], [Price]) VALUES (1, N'1221', 1122, N'Lô', 2, 150000)
@@ -231,19 +231,19 @@ INSERT [dbo].[importGoods] ([categoryID],  [Seri], [importbillID], [colorCode], 
 INSERT [dbo].[importGoods] ([categoryID],  [Seri], [importbillID], [colorCode], [Number], [Price]) VALUES (1, N'6546654', 25122020, N'Chiếc', 2, 32000)
 INSERT [dbo].[importGoods] ([categoryID],  [Seri], [importbillID], [colorCode], [Number], [Price]) VALUES (4, N'9812', 111, N'Chiếc', 2, 40000)
 GO
-INSERT [dbo].[kho] ([seri]) VALUES (N'1221')
-INSERT [dbo].[kho] ([seri]) VALUES (N'2223')
-INSERT [dbo].[kho] ([seri]) VALUES (N'434')
-INSERT [dbo].[kho] ([seri]) VALUES (N'61222')
-INSERT [dbo].[kho] ([seri]) VALUES (N'9812')
+INSERT [dbo].[WareHouse] ([seri]) VALUES (N'1221')
+INSERT [dbo].[WareHouse] ([seri]) VALUES (N'2223')
+INSERT [dbo].[WareHouse] ([seri]) VALUES (N'434')
+INSERT [dbo].[WareHouse] ([seri]) VALUES (N'61222')
+INSERT [dbo].[WareHouse] ([seri]) VALUES (N'9812')
 GO
-SET IDENTITY_INSERT [dbo].[Provider] ON 
+SET IDENTITY_INSERT [dbo].[Supplier] ON 
 
-INSERT [dbo].[Provider] ([id], [Name], [Address], [phoneNumber], [Email]) VALUES (1, N'An Phú', N'3c, Phan ĐÌnh Phùng,Hải Phòng', N'0862 019 369', N'Anphu@gmail.com')
-INSERT [dbo].[Provider] ([id], [Name], [Address], [phoneNumber], [Email]) VALUES (2, N'Cát Tiên', N'34 An Đà, Lạch Tray, Ngô Quyền, Hải Phòng', N'0225 3741 638', N'CatTien12@gmail.com')
-INSERT [dbo].[Provider] ([id], [Name], [Address], [phoneNumber], [Email]) VALUES (3, N'NPP-Dũng Mai', N'số 9b Mạc đĩnh Phúc', N'0988966074', N'Dung11@gmail.com')
-INSERT [dbo].[Provider] ([id], [Name], [Address], [phoneNumber], [Email]) VALUES (4, N'Tuấn Ngà', N'16F/630 Thiên Lôi-Lê chân _hải Phòng', N'0934687496', N'Tuannga1998@gmail.com')
-SET IDENTITY_INSERT [dbo].[Provider] OFF
+INSERT [dbo].[Supplier] ([id], [Name], [Address], [phoneNumber], [Email]) VALUES (1, N'An Phú', N'3c, Phan ĐÌnh Phùng,Hải Phòng', N'0862 019 369', N'Anphu@gmail.com')
+INSERT [dbo].[Supplier] ([id], [Name], [Address], [phoneNumber], [Email]) VALUES (2, N'Cát Tiên', N'34 An Đà, Lạch Tray, Ngô Quyền, Hải Phòng', N'0225 3741 638', N'CatTien12@gmail.com')
+INSERT [dbo].[Supplier] ([id], [Name], [Address], [phoneNumber], [Email]) VALUES (3, N'NPP-Dũng Mai', N'số 9b Mạc đĩnh Phúc', N'0988966074', N'Dung11@gmail.com')
+INSERT [dbo].[Supplier] ([id], [Name], [Address], [phoneNumber], [Email]) VALUES (4, N'Tuấn Ngà', N'16F/630 Thiên Lôi-Lê chân _hải Phòng', N'0934687496', N'Tuannga1998@gmail.com')
+SET IDENTITY_INSERT [dbo].[Supplier] OFF
 GO
 ALTER TABLE [dbo].[FeatureGroup]  WITH CHECK ADD FOREIGN KEY([fid])
 REFERENCES [dbo].[Feature] ([id])
@@ -254,8 +254,8 @@ GO
 ALTER TABLE [dbo].[Group]  WITH CHECK ADD FOREIGN KEY([IDLeader])
 REFERENCES [dbo].[Account] ([UserName])
 GO
-ALTER TABLE [dbo].[importBill]  WITH CHECK ADD FOREIGN KEY([ProviderID])
-REFERENCES [dbo].[Provider] ([id])
+ALTER TABLE [dbo].[importBill]  WITH CHECK ADD FOREIGN KEY([SupplierID])
+REFERENCES [dbo].[Supplier] ([id])
 GO
 ALTER TABLE [dbo].[importGoods]  WITH CHECK ADD FOREIGN KEY([categoryID])
 REFERENCES [dbo].[Category] ([id])
@@ -263,7 +263,7 @@ GO
 ALTER TABLE [dbo].[importGoods]  WITH CHECK ADD FOREIGN KEY([importbillID])
 REFERENCES [dbo].[importBill] ([id])
 GO
-ALTER TABLE [dbo].[kho]  WITH CHECK ADD FOREIGN KEY([seri])
+ALTER TABLE [dbo].[WareHouse]  WITH CHECK ADD FOREIGN KEY([seri])
 REFERENCES [dbo].[importGoods] ([Seri])
 GO
 ALTER TABLE [dbo].[RoleAccount]  WITH CHECK ADD FOREIGN KEY([UserName])

@@ -10,7 +10,7 @@ public class Bill {
 
     private String id;
     private Date date;
-    private Provider provider;
+    private Supplier provider;
     private int amountPaid;
     private int total;
     private int payed;
@@ -19,7 +19,7 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(String id, Date date, Provider provider, int amountPaid, int total, int payed) {
+    public Bill(String id, Date date, Supplier provider, int amountPaid, int total, int payed) {
         this.id = id;
         this.date = date;
         this.provider = provider;
@@ -77,11 +77,11 @@ public class Bill {
 
     
 
-    public Provider getProvider() {
+    public Supplier getProvider() {
         return provider;
     }
 
-    public void setProvider(Provider provider) {
+    public void setProvider(Supplier provider) {
         this.provider = provider;
     }
 
