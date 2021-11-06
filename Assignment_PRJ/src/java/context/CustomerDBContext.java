@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import model.Customer;
+import context.DBContext;
 
 /**
  *
@@ -18,21 +20,22 @@ public class CustomerDBContext extends DBContext{
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    public List<model.Customer> getAllCustomer(){
-        List<model.Customer> listCus = new ArrayList<>();
+    public List<Customer> getAllCustomer(){
+        List<Customer> listCus = new ArrayList<>();
         
         try {
-            String query ="select*from customer";
+            String query ="select * from customer";
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             
             while(rs.next()){
-                model.Customer cs = new model.Customer();
+                Customer cs = new Customer();
                 cs.setId(rs.getString("id"));
                 cs.setName(rs.getString("Name"));
                 cs.setPhone(rs.getString("phoneNumber"));
-                cs.setCusOwes(rs.getInt("amountCustomerOwes"));
-                cs.setCusPays(rs.getInt("amountCustomerPays"));
+                cs.setTotal(rs.getInt("total"));
+                cs.setPayed(rs.getInt("payed"));
+                cs.setOwes(rs.getInt("owes"));
                 listCus.add(cs);
             }
         } catch (Exception e) {
@@ -43,10 +46,9 @@ public class CustomerDBContext extends DBContext{
     //Test
     public static void main(String[] args) {
         CustomerDBContext dao = new CustomerDBContext();
-        List<model.Customer> list = dao.getAllCustomer();
-        for (model.Customer o : list) {
+        List<Customer> list = dao.getAllCustomer();
+        for (Customer o : list) {
             System.out.println(o);
-
         }
     }
 }

@@ -32,20 +32,20 @@
                             <th id="trs-hd" class="col-lg-1"style="width: 100px">Mã khách hàng</th>
                             <th id="trs-hd" class="col-lg-2"style="width: 100px">Tên khách</th>
                             <th id="trs-hd" class="col-lg-3"style="width: 100px">Điện thoại</th>
-                            <th id="trs-hd" class="col-lg-2"style="width: 100px">Số tiền đã đưa</th>
-                            <th id="trs-hd" class="col-lg-2"style="width: 100px">Số tiền đã mua</th>
+                            <th id="trs-hd" class="col-lg-2"style="width: 100px">Tổng cần thanh toán</th>
+                            <th id="trs-hd" class="col-lg-2"style="width: 100px">Đã thanh toán</th>
                             <th id="trs-hd" class="col-lg-2"style="width: 100px">Còn nợ lại</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${listCS}" var="c" >
+                    <c:forEach items="${listCS}" var="c">
                         <tr>
                             <td style="width: 100px">${c.id}</td>
                             <td style="width: 100px">${c.name}</td>
                             <td style="width: 100px">${c.phone}</td>
-                            <td style="width: 100px">${c.cusPays}</td>
-                            <td style="width: 100px"></td>
-                            <td style="width: 100px">${c.cusOwes}</td>
+                            <td style="width: 100px">${c.total}</td>
+                            <td style="width: 100px">${c.payed}</td>
+                            <td style="width: 100px">${c.owes}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -1,4 +1,4 @@
-﻿USE [Asignment]
+﻿USE [Assignment]
 Go
 SET ANSI_NULLS ON
 GO
@@ -64,8 +64,9 @@ CREATE TABLE [dbo].[customer](
 	[id] [varchar](30) NOT NULL,
 	[Name] [nvarchar](20) NULL,
 	[phoneNumber] [varchar](20) NULL,
-	[amountCustomerOwes] [int] NULL,
-	[amountCustomerPays] [int] NULL,
+	[Total] [int] NULL,
+	[Payed] [int] NULL,
+	[Owes] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -196,10 +197,10 @@ INSERT [dbo].[Category] ([id], [Name]) VALUES (7, N'Quần vải')
 INSERT [dbo].[Category] ([id], [Name]) VALUES (8, N'Áo da')
 SET IDENTITY_INSERT [dbo].[Category] OFF
 GO
-INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [amountCustomerOwes], [amountCustomerPays]) VALUES (N'Baodg11', N'Đỗ Gia Bảo', N'0988002476', 0, 100000)
-INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [amountCustomerOwes], [amountCustomerPays]) VALUES (N'HanhPT9', N'Phạm Thúy Hạnh ', N'0123212322', 1000000, 0)
-INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [amountCustomerOwes], [amountCustomerPays]) VALUES (N'KhaiL2', N'Nguyễn Lý Hải', N'0936337498', 0, 185000)
-INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [amountCustomerOwes], [amountCustomerPays]) VALUES (N'LeAnhnk4', N'Nguyễn Khắc Lê Anh', N'02253977462', 0, 500000)
+INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [Total], [Payed], [Owes]) VALUES (N'Anhle', N'Le Duc Anh', N'0984268930', 1000000, 500000,500000)
+INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [Total], [Payed], [Owes]) VALUES (N'HanhPT9', N'Phạm Thúy Hạnh ', N'0123212322', 2000000,500000,1500000 )
+INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [Total], [Payed], [Owes]) VALUES (N'KhaiL2', N'Nguyễn Lý Hải', N'0936337498', 1000000, 500000,500000)
+INSERT [dbo].[customer] ([id], [Name], [phoneNumber], [Total], [Payed], [Owes]) VALUES (N'LeAnhnk4', N'Nguyễn Khắc Lê Anh', N'02253977462', 8000000, 4300000,3700000)
 GO
 GO
 INSERT [dbo].[importBill] ([id], [date], [ProviderID], [AmountPaid]) VALUES (111, CAST(N'2021-01-15' AS Date), 1, 12000)

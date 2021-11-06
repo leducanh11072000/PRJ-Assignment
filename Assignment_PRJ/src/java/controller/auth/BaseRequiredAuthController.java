@@ -20,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class BaseRequiredAuthController extends HttpServlet {
 
     private boolean isAuthenticated(HttpServletRequest request) {
-        return request.getSession().getAttribute("account") != null;
+//        return request.getSession().getAttribute("account") != null;
+return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
