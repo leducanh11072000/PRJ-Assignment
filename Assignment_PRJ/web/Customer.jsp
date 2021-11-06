@@ -17,20 +17,6 @@
         <link rel="stylesheet" href="Action/assets/css/Table-With-Search-1.css">
         <link rel="stylesheet" href="Action/assets/css/Table-With-Search.css">
         
-        <script> 
-            function doUpdate(id)
-            {
-                window.location.href = "/updateCustomer?id=" + id;
-            }
-            function doDelete(id)
-            {
-                var confirm = confirm("are you sure?");
-                if(confirm)
-                {
-                    window.location.href = "/deleteCustomer?id=" + id;
-                }
-            }
-        </script>
     </head>
         <body>
         <div class="col-md-12 search-table-col">
@@ -63,14 +49,30 @@
                             <td style="width: 100px">${c.total}</td>
                             <td style="width: 100px">${c.payed}</td>
                             <td style="width: 100px">${c.owes}</td>
-                            <td><input type="button" onclick="doUpdate(${c.id});" value="Update"/></td>
-                            <td><input type="button" onclick="doDelete(${c.id});" value="Delete"/></td>
+                            
+                            <td><input type="button" id="${c.id}" onclick="doUpdate(this);" value="Update"/></td>
+                            <td><input type="button" id="${c.id}" onclick="doDelete(this);" value="Delete"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
         </div>
+                    <script> 
+            function doUpdate(obj)
+            {   
+                let id = obj.id;
+                window.location.href = "/Assignment_PRJ/updateCustomer?id=" + id;
+            }
+            function doDelete(obj)
+            {   let id = obj.id;
+                var c = confirm("are you sure?");
+                if(c)
+                {
+                    window.location.href = "/Assignment_PRJ/deleteCustomer?id=" + id;
+                }
+            }
+        </script>
         <script src="Action/assets/js/jquery.min.js"></script>
         <script src="Action/assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="Action/assets/js/Table-With-Search.js"></script>        

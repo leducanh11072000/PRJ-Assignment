@@ -40,7 +40,7 @@
                 </tbody>
             </table>
             <input type="submit" value="Save" />
-        <input type="submit" value="Cancel" /> 
+            <input type="submit" value="Cancel" /> 
 
         </form>
         

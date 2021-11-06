@@ -9,6 +9,11 @@ import context.CustomerDBContext;
 import controller.auth.BaseRequiredAuthController;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -60,18 +65,24 @@ public class UpdateCustomerController extends  BaseRequiredAuthController {
      */
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {   
+        System.out.println(request.getParameter("name"));
+        System.out.println(request.getParameter("id"));
         String id = request.getParameter("id");
         CustomerDBContext cusDB = new  CustomerDBContext();
         String name=request.getParameter("name");
         String phoneNumber=request.getParameter("phoneNumber");
         int Total= Integer.parseInt(request.getParameter("total"));
         int Payed= Integer.parseInt(request.getParameter("payed"));
-        int Owes= Integer.parseInt(request.getParameter("owes"));
-        cusDB.update(id, name, phoneNumber, Total, Payed, Owes);
-        response.sendRedirect("list");
+        int Owes= Total-Payed;
+        boolean rs = cusDB.update(id, name, phoneNumber, Total, Payed, Owes);
+        
+        //cusDB.getAllCustomer();
+        System.out.println("update rs: " + rs);
+        response.sendRedirect("customer");
     }
-
+    
+    
     /**
      * Returns a short description of the servlet.
      *

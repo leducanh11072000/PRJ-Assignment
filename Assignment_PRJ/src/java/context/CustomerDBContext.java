@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Customer;
 import context.DBContext;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,16 +21,16 @@ import java.util.logging.Logger;
  * @author 84984
  */
 public class CustomerDBContext extends DBContext{
-    PreparedStatement ps = null;
-    ResultSet rs = null;
     
     public List<Customer> getAllCustomer(){
         List<Customer> listCus = new ArrayList<>();
-        
+        Connection connection = createConn();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
         try {
             String query ="select * from customer";
-            ps = connection.prepareStatement(query);
-            rs = ps.executeQuery();
+            stm = connection.prepareStatement(query);
+            rs = stm.executeQuery();
             
             while(rs.next()){
                 Customer cs = new Customer();
@@ -42,30 +43,53 @@ public class CustomerDBContext extends DBContext{
                 listCus.add(cs);
             }
         } catch (Exception e) {
+        } finally {
+            try {
+                stm.close();
+            } catch (Exception e) {
+            }
+            try {
+                connection.close();
+            } catch (Exception e) {
+            }
         }
         return listCus;
     }
     public Customer getCustomer(String id){
         Customer cus = new Customer();
+        Connection connection = createConn();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
         try {
             String sql ="select * from customer where id =?";
-            ps = connection.prepareStatement(sql);
-            ps.setString(1, id);
-            rs = ps.executeQuery();
-             while(rs.next()){
-            cus.setId(rs.getString("id"));
-            cus.setName(rs.getString("Name"));
-            cus.setPhone(rs.getString("phoneNumber"));
-            cus.setTotal(rs.getInt("total"));
-            cus.setPayed(rs.getInt("payed"));
-            cus.setOwes(rs.getInt("owes"));
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, id);
+            rs = stm.executeQuery();
+            while(rs.next()){
+                cus.setId(rs.getString("id"));
+                cus.setName(rs.getString("Name"));
+                cus.setPhone(rs.getString("phoneNumber"));
+                cus.setTotal(rs.getInt("total"));
+                cus.setPayed(rs.getInt("payed"));
+                cus.setOwes(rs.getInt("owes"));
              }  
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+            } catch (Exception e) {
+            }
+            try {
+                connection.close();
+            } catch (Exception e) {
+            }
         }
         return cus;
     }
     public void insert(String id,String name,String phoneNumber,int Total,int Payed,int Owes){
+        PreparedStatement stm = null;
+        Connection connection = createConn();
         try {
             String sql = "INSERT INTO [dbo].[customer]\n" +
                     "           ([id]\n" +
@@ -81,7 +105,7 @@ public class CustomerDBContext extends DBContext{
                     "           ,?\n" +
                     "           ,?\n" +
                     "           ,?)";
-            PreparedStatement stm = connection.prepareStatement(sql);
+            stm = connection.prepareStatement(sql);
             stm.setString(1, id);
             stm.setString(2, name);
             stm.setString(3, phoneNumber);
@@ -91,9 +115,20 @@ public class CustomerDBContext extends DBContext{
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+            } catch (Exception e) {
+            }
+            try {
+                connection.close();
+            } catch (Exception e) {
+            }
         }
     }
-    public void update(String id,String name,String phoneNumber,int Total,int Payed,int Owes){
+    public boolean update(String id,String name,String phoneNumber,int Total,int Payed,int Owes){
+        Connection connection = createConn();
+        PreparedStatement stm = null;
         try {
             String sql = "UPDATE [customer]\n"
                     + "   SET [name] = ?\n"
@@ -102,27 +137,51 @@ public class CustomerDBContext extends DBContext{
                     + "      ,[Payed] = ?\n"
                     + "      ,[Owes] = ?\n"
                     + " WHERE id =?";
-            PreparedStatement stm = connection.prepareStatement(sql);
+            stm = connection.prepareStatement(sql);
             stm.setString(1, name);
             stm.setString(2, phoneNumber);
             stm.setInt(3, Total);
             stm.setInt(4, Payed);
             stm.setInt(5, Owes);
             stm.setString(6, id);
-            stm.execute();
+            return stm.execute();
+            
         } catch (SQLException ex) {
+            ex.printStackTrace();
             Logger.getLogger(CustomerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+            } catch (Exception e) {
+            }
+            try {
+                connection.close();
+            } catch (Exception e) {
+            }
         }
-    
+        return false;
     }
+    
+      
     public void delete(String id) {
+        Connection connection = createConn();
+        PreparedStatement ps = null;
         try {
             String sql = "DELETE customer WHERE id =?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, id);
-            stm.execute();
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.execute();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception e) {
+            }
+            try {
+                connection.close();
+            } catch (Exception e) {
+            }
         }
     }
     //Test
@@ -133,6 +192,6 @@ public class CustomerDBContext extends DBContext{
             System.out.println(o);
         }
         
-//        dao.insert("anhle", "Duc Anh", "0984268930", 1000000, 480000, 520000);
+//        dao.update("anhle", "Duc Anh", "0984268930", 1100000, 590000, 510000);
     }
 }

@@ -5,6 +5,7 @@
  */
 package context;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,14 +18,17 @@ import model.Account;
  * @author dell
  */
 public class AccountDBContext extends DBContext {
+    
     public Account getAccount(String username, String password)
     {
+        Connection connection = createConn();
+        PreparedStatement stm = null;
         try {
             String sql = "SELECT [username]\n" +
                     "      ,[password]\n" +
                     "  FROM [Account]\n" +
                     "  WHERE [username] = ? AND [password] = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
+            stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
             ResultSet rs = stm.executeQuery();
@@ -37,6 +41,15 @@ public class AccountDBContext extends DBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                stm.close();
+            } catch (Exception e) {
+            }
+            try {
+                connection.close();
+            } catch (Exception e) {
+            }
         }
         return null;
     }
