@@ -24,6 +24,26 @@
         <servlet-name>SupplierListController</servlet-name>
         <servlet-class>controller.SupplierListController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BillController</servlet-name>
+        <servlet-class>controller.BillController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertBillController</servlet-name>
+        <servlet-class>controller.InsertBillController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertDetailController</servlet-name>
+        <servlet-class>controller.InsertDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowDetailController</servlet-name>
+        <servlet-class>controller.ShowDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertSupplierController</servlet-name>
+        <servlet-class>controller.InsertSupplierController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>customerController</servlet-name>
         <url-pattern>/customer</url-pattern>
@@ -47,6 +67,26 @@
     <servlet-mapping>
         <servlet-name>SupplierListController</servlet-name>
         <url-pattern>/SupplierList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillController</servlet-name>
+        <url-pattern>/Bill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertBillController</servlet-name>
+        <url-pattern>/InsertBill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertDetailController</servlet-name>
+        <url-pattern>/InsertDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowDetailController</servlet-name>
+        <url-pattern>/ShowDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertSupplierController</servlet-name>
+        <url-pattern>/InsertSupplier</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

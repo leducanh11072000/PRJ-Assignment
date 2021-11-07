@@ -60,6 +60,7 @@ public class customerController extends BaseRequiredAuthController {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         CustomerDBContext cus = new CustomerDBContext();
         List<Customer> list = cus.getAllCustomer();
         request.setAttribute("listCS", list);
@@ -77,6 +78,7 @@ public class customerController extends BaseRequiredAuthController {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         processRequest(request, response);
     }
 

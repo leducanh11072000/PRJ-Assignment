@@ -5,7 +5,7 @@
  */
 package controller;
 
-import context.CustomerDBContext;
+import context.SupplierDBContext;
 import controller.auth.BaseRequiredAuthController;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 84984
  */
-public class InsertCustomerController extends BaseRequiredAuthController {
+public class InsertSupplierController extends BaseRequiredAuthController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,8 +42,8 @@ public class InsertCustomerController extends BaseRequiredAuthController {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       request.setCharacterEncoding("UTF-8");
-       request.getRequestDispatcher("InsertCustomer.jsp").forward(request, response);
+        request.setCharacterEncoding("UTF-8");
+        request.getRequestDispatcher("InsertSupplier.jsp").forward(request, response);
     }
 
     /**
@@ -58,15 +58,13 @@ public class InsertCustomerController extends BaseRequiredAuthController {
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String id = request.getParameter("id");
-        CustomerDBContext cusDB = new  CustomerDBContext();
-        String name=request.getParameter("name");
-        String phoneNumber=request.getParameter("phoneNumber");
-        int Total= Integer.parseInt(request.getParameter("total"));
-        int Payed= Integer.parseInt(request.getParameter("payed"));
-        int Owes= Total-Payed;
-        cusDB.insert(id, name, phoneNumber, Total, Payed, Owes);
-        response.sendRedirect("customer");
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String email = request.getParameter("email");
+        SupplierDBContext sdb = new SupplierDBContext();
+        sdb.insertSup(name, address, phoneNumber, email);
+        response.sendRedirect("SupplierList");
     }
 
     /**

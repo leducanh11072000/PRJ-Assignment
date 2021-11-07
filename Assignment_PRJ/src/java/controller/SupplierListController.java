@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import context.SupplierDBContext;
+import controller.auth.BaseRequiredAuthController;
 import model.Supplier;
 /**
  *
  * @author 84984
  */
-public class SupplierListController extends HttpServlet {
+public class SupplierListController extends BaseRequiredAuthController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -56,8 +57,9 @@ public class SupplierListController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
        SupplierDBContext SLDB= new SupplierDBContext();
         List<Supplier> list = SLDB.getAllSupplier();
         request.setAttribute("listSup", list);
@@ -73,7 +75,7 @@ public class SupplierListController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

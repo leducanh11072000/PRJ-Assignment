@@ -48,6 +48,7 @@ public class UpdateCustomerController extends  BaseRequiredAuthController {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         CustomerDBContext cusDB = new  CustomerDBContext();
         Customer oldCustomer  = cusDB.getCustomer(id);
@@ -65,9 +66,8 @@ public class UpdateCustomerController extends  BaseRequiredAuthController {
      */
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {   
-        System.out.println(request.getParameter("name"));
-        System.out.println(request.getParameter("id"));
+            throws ServletException, IOException {  
+        request.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         CustomerDBContext cusDB = new  CustomerDBContext();
         String name=request.getParameter("name");
@@ -78,7 +78,6 @@ public class UpdateCustomerController extends  BaseRequiredAuthController {
         boolean rs = cusDB.update(id, name, phoneNumber, Total, Payed, Owes);
         
         //cusDB.getAllCustomer();
-        System.out.println("update rs: " + rs);
         response.sendRedirect("customer");
     }
     

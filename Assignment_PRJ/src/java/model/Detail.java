@@ -4,25 +4,27 @@
  * and open the template in the editor.
  */
 package model;
-public class Goods {
+public class Detail {
 
     private Category category;
-    private int seri;
+    private String seri;
     private Bill bills;
-    private String ColorCode;
-    private int number;
+    private String colorCode;
+    private String unit;
+    private int quantity;
     private int price;
    
 
-    public Goods() {
+    public Detail() {
     }
 
-    public Goods(Category category, int seri, Bill bills, String ColorCode, int number, int price) {
+    public Detail(Category category, String seri, Bill bills, String colorCode, String unit, int quantity, int price) {
         this.category = category;
         this.seri = seri;
         this.bills = bills;
-        this.ColorCode = ColorCode;
-        this.number = number;
+        this.colorCode = colorCode;
+        this.unit = unit;
+        this.quantity = quantity;
         this.price = price;
     }
 
@@ -34,11 +36,11 @@ public class Goods {
         this.category = category;
     }
 
-    public int getSeri() {
+    public String getSeri() {
         return seri;
     }
 
-    public void setSeri(int seri) {
+    public void setSeri(String seri) {
         this.seri = seri;
     }
 
@@ -51,19 +53,27 @@ public class Goods {
     }
 
     public String getColorCode() {
-        return ColorCode;
+        return colorCode;
     }
 
-    public void setColorCode(String ColorCode) {
-        this.ColorCode = ColorCode;
+    public void setColorCode(String colorCode) {
+        this.colorCode = colorCode;
     }
 
-    public int getNumber() {
-        return number;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getPrice() {
@@ -73,6 +83,9 @@ public class Goods {
     public void setPrice(int price) {
         this.price = price;
     }
-
+    public int getTotal(){
+    return price*quantity;
+    }
+    
     
 }

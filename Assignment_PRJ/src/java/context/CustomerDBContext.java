@@ -93,11 +93,11 @@ public class CustomerDBContext extends DBContext{
         try {
             String sql = "INSERT INTO [dbo].[customer]\n" +
                     "           ([id]\n" +
-                    "           ,[Name]\n" +
+                    "           ,[name]\n" +
                     "           ,[phoneNumber]\n" +
-                    "           ,[Total]\n" +
-                    "           ,[Payed]\n" +
-                    "           ,[Owes])\n" +
+                    "           ,[total]\n" +
+                    "           ,[payed]\n" +
+                    "           ,[owes])\n" +
                     "     VALUES\n" +
                     "           (?\n" +
                     "           ,?\n" +
@@ -133,9 +133,9 @@ public class CustomerDBContext extends DBContext{
             String sql = "UPDATE [customer]\n"
                     + "   SET [name] = ?\n"
                     + "      ,[phoneNumber] = ?\n"
-                    + "      ,[Total] = ?\n"
-                    + "      ,[Payed] = ?\n"
-                    + "      ,[Owes] = ?\n"
+                    + "      ,[total] = ?\n"
+                    + "      ,[payed] = ?\n"
+                    + "      ,[owes] = ?\n"
                     + " WHERE id =?";
             stm = connection.prepareStatement(sql);
             stm.setString(1, name);

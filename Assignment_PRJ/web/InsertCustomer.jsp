@@ -17,30 +17,30 @@
                 <tbody> 
                  <tr>
                     <td>Mã Khách Hàng  </td>
-                    <td> <input style="width: 200px" type="text" name="id"  /></td>
+                    <td> <input required style="width: 200px" type="text" name="id"  /></td>
                 </tr>   
                 
                 <tr>
                     <td>Tên Khách Hàng</td>
-                    <td> <input style="width: 200px" type="text" name="name"  /></td>
+                    <td> <input required style="width: 200px" type="text" name="name"  /></td>
                 </tr>
                 <tr>
                     <td>Số Điện Thoại</td>
-                    <td> <input style="width: 200px" type="text" name="phoneNumber" /></td>
+                    <td> <input required style="width: 200px" type="text" name="phoneNumber" /></td>
                 </tr>
                 <tr>
                     <td>Tổng cần thanh toán</td>
-                    <td> <input style="width: 200px" type="text" name="total" />VND</td>
+                    <td> <input required style="width: 200px" type="text" name="total" />VND</td>
                 </tr>
                 
                 <tr>
                     <td>Đã Thanh toán</td>
-                    <td><input style="width: 200px" type="text" name="payed" />VND</td>
+                    <td><input required style="width: 200px" type="text" name="payed" />VND</td>
                 </tr>
                 </tbody>
             </table>
             <input type="submit" value="Save" />
-            <input type="submit" value="Cancel" /> 
+            <a  href="customer">Cancel</a>
 
         </form>
         

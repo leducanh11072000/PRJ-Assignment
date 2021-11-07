@@ -74,6 +74,42 @@ public class SupplierDBContext extends DBContext{
 //            }
 //        }
 //    }
+    public void insertSup(String name,String address,String phoneNumber,String email){
+        Connection connection = createConn();
+            PreparedStatement stm = null;
+            ResultSet rs = null;
+        try {
+            
+            String query ="INSERT INTO [dbo].[Supplier]\n" +
+                    "           ([name]\n" +
+                    "           ,[address]\n" +
+                    "           ,[phoneNumber]\n" +
+                    "           ,[email])\n" +
+                    "     VALUES\n" +
+                    "           (?\n" +
+                    "           ,?\n" +
+                    "           ,?\n" +
+                    "           ,?)";
+            stm = connection.prepareStatement(query);
+            stm.setString(1, name);
+            stm.setString(2, address);
+            stm.setString(3, phoneNumber);
+            stm.setString(4, email);
+            rs = stm.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            try {
+                stm.close();
+            } catch (Exception e) {
+            }
+            try {
+                connection.close();
+            } catch (Exception e) {
+            }
+        }
+    
+    }
     public static void main(String[] args) {
         SupplierDBContext sdb = new SupplierDBContext();
 //        sdb.delete(2);

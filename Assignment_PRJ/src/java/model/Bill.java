@@ -8,9 +8,9 @@ package model;
 import java.util.Date;
 public class Bill {
 
-    private String id;
+    private int id;
     private Date date;
-    private Supplier provider;
+    private Supplier supplier;
     private int amountPaid;
     private int total;
     private int payed;
@@ -19,21 +19,20 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(String id, Date date, Supplier provider, int amountPaid, int total, int payed) {
+    public Bill(int id, Date date, Supplier supplier, int amountPaid, int total, int payed,int owes) {
         this.id = id;
         this.date = date;
-        this.provider = provider;
+        this.supplier = supplier;
         this.amountPaid = amountPaid;
         this.total = total;
         this.payed = payed;
     }
 
-   
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -43,6 +42,14 @@ public class Bill {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public int getAmountPaid() {
@@ -69,26 +76,16 @@ public class Bill {
         this.payed = payed;
     }
 
-   
-
-//    public int getOwed() {
-//        return owed;
-//    }
+    @Override
+    public String toString() {
+        return "Bill{" + "id=" + id + ", date=" + date + ", supplier=" + supplier + ", amountPaid=" + amountPaid + ", total=" + total + ", payed=" + payed + '}';
+    }
 
     
 
-    public Supplier getProvider() {
-        return provider;
-    }
+    
 
-    public void setProvider(Supplier provider) {
-        this.provider = provider;
-    }
-
-    @Override
-    public String toString() {
-        return "Bill{" + "id=" + id + ", date=" + date + ", provider=" + provider + ", amountPaid=" + amountPaid + ", total=" + total + ", payed=" + payed + '}';
-    }
-
+   
+    
     
 }

@@ -5,20 +5,23 @@
  */
 package controller;
 
-import context.CustomerDBContext;
+import context.BillDBContext;
+import context.DetailDBContext;
 import controller.auth.BaseRequiredAuthController;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Detail;
 
 /**
  *
  * @author 84984
  */
-public class InsertCustomerController extends BaseRequiredAuthController {
+public class ShowDetailController extends BaseRequiredAuthController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,6 +32,22 @@ public class InsertCustomerController extends BaseRequiredAuthController {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ShowDetailController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ShowDetailController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -42,8 +61,12 @@ public class InsertCustomerController extends BaseRequiredAuthController {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       request.setCharacterEncoding("UTF-8");
-       request.getRequestDispatcher("InsertCustomer.jsp").forward(request, response);
+        request.setCharacterEncoding("UTF-8");
+        int billid = Integer.parseInt(request.getParameter("id"));
+        BillDBContext bdb = new BillDBContext();
+        List<Detail> details = bdb.getAllAcountBill(billid);
+        request.setAttribute("details", details);
+        request.getRequestDispatcher("ShowDetail.jsp").forward(request, response);
     }
 
     /**
@@ -58,15 +81,7 @@ public class InsertCustomerController extends BaseRequiredAuthController {
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String id = request.getParameter("id");
-        CustomerDBContext cusDB = new  CustomerDBContext();
-        String name=request.getParameter("name");
-        String phoneNumber=request.getParameter("phoneNumber");
-        int Total= Integer.parseInt(request.getParameter("total"));
-        int Payed= Integer.parseInt(request.getParameter("payed"));
-        int Owes= Total-Payed;
-        cusDB.insert(id, name, phoneNumber, Total, Payed, Owes);
-        response.sendRedirect("customer");
+        processRequest(request, response);
     }
 
     /**
