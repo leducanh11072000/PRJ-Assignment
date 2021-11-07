@@ -44,6 +44,10 @@
         <servlet-name>InsertSupplierController</servlet-name>
         <servlet-class>controller.InsertSupplierController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>controller.HomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>customerController</servlet-name>
         <url-pattern>/customer</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>InsertSupplierController</servlet-name>
         <url-pattern>/InsertSupplier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/Home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

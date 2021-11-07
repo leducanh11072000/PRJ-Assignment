@@ -53,4 +53,10 @@ public class AccountDBContext extends DBContext {
         }
         return null;
     }
+    public static void main(String[] args) {
+        Account acc = new Account();
+        AccountDBContext db = new AccountDBContext();
+        acc = db.getAccount("anhldhr141746@gmail.com","2345");
+        System.out.println(acc);
+    }
 }
