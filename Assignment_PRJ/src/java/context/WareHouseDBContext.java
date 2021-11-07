@@ -26,10 +26,10 @@ public class WareHouseDBContext extends DBContext{
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String query = "select ROW_NUMBER() over(order by g.[name] asc) as stt ,c.[Name] as cate,g.[name],sum(g.number) as 'soluong' from importGoods g\n"
-                    + "join kho k on g.Seri = k.seri\n"
-                    + "join Category c on c.id = g.categoryID\n"
-                    + "group by g.[Name], c.Name";
+            String query = "select ROW_NUMBER() over(order by g.[seri] asc) as stt ,c.[Name] as cate,g.[seri],sum(g.quantity) as 'soluong' from Detail g\n" +
+"                    join WareHouse k on g.Seri = k.seri\n" +
+"                    join Category c on c.id = g.categoryID\n" +
+"                    group by g.[seri], c.Name";
             stm = connection.prepareStatement(query);
             rs = stm.executeQuery();
             
@@ -45,4 +45,11 @@ public class WareHouseDBContext extends DBContext{
         }
         return listWare;
 }
+    public static void main(String[] args) {
+        WareHouseDBContext db = new WareHouseDBContext();
+        List<WareHouse> listWare = db.getAllWareHouseData();
+        for (WareHouse wareHouse : listWare) {
+            System.out.println(wareHouse);
+        }
+    }
 }

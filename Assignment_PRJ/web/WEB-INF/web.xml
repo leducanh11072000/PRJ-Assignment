@@ -48,6 +48,10 @@
         <servlet-name>HomeController</servlet-name>
         <servlet-class>controller.HomeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WareHouseController</servlet-name>
+        <servlet-class>controller.WareHouseController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>customerController</servlet-name>
         <url-pattern>/customer</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WareHouseController</servlet-name>
+        <url-pattern>/WareHouse</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
